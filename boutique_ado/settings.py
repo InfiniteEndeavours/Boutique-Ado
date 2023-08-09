@@ -43,11 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Required by AllAuth
-    'django.contrib.sites', # Used by Social Account App for CallBack URL
+    'django.contrib.sites',  # Used by Social Account App for CallBack URL
     # AllAuth
     'allauth',
     'allauth.account',
-    'allauth.socialaccount', # Allows Users to log in with Social Media
+    'allauth.socialaccount',  # Allows Users to log in with Social Media
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -65,13 +66,15 @@ ROOT_URLCONF = 'boutique_ado.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(
+                                        BASE_DIR, 'templates', 'allauth')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 # Required by AllAuth
-                # Allows AllAuth and DJango to access HTTP request object in templates
+                # Allows AllAuth and DJango to access HTTP request
+                # object in templates
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -89,17 +92,19 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SITE_ID = 1 # Used by Social Account App for CallBack URL
+SITE_ID = 1  # Used by Social Account App for CallBack URL
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Log confirmation emails to console
+# Log confirmation emails to console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email' # Allows auth using Username or Email
-ACCOUNT_EMAIL_REQUIRED = True # Email is required to register
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # Email must be verified
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True # Email must be entered twice
-ACCOUNT_USERNAME_MIN_LENGTH = 4 # Min username length
-LOGIN_URL = '/accounts/login/' # Login URL
-LOGIN_REDIRECT_URL = '/' # URL to redirect to after Login
+# Allows auth using Username or Email
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True  # Email is required to register
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Email must be verified
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True  # Email must be entered twice
+ACCOUNT_USERNAME_MIN_LENGTH = 4  # Min username length
+LOGIN_URL = '/accounts/login/'  # Login URL
+LOGIN_REDIRECT_URL = '/'  # URL to redirect to after Login
 
 WSGI_APPLICATION = 'boutique_ado.wsgi.application'
 
