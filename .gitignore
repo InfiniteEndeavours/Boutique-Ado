@@ -9,3 +9,8 @@ node_modules/
 cloudinary_python.txt
 .env
 *.sqlite3
+/.idea/.gitignore
+/.idea/Boutique-Ado.iml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/vcs.xml
