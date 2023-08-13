@@ -24,6 +24,6 @@ def add_to_bag(request, item_id):
 
     # Add new/updated bag dictionary to session
     request.session['bag'] = bag
-    print(request.session['bag'])
+
     # Returns the user to the same page
     return redirect(redirect_url)
